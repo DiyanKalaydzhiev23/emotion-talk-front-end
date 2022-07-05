@@ -1,15 +1,22 @@
-export const sendRecording = async (formData) => {
+import { baseURL, handleData } from "./utills";
 
-    const response = await fetch('http://127.0.0.1:8000/emotion-recognize/1/', {
+export const sendRecording = async (formData, audioLength) => {
+    const response = await fetch(`${baseURL}/emotion-recognize/`, {
         method: 'POST',
         body: formData
     });
 
-    const data = await response.json();
+    const data = await handleData(response);
 
-    if (!response.ok) {
-        throw new Error(data);
-    }
+    setTimeout(
+        getLastEmotion,
+        audioLength / 2,
+        data.data.owner_id,
+        data.current_emotions_count
+    );
+}
 
-    console.log(data);
+export const getLastEmotion = async (userId, lastEmotionsCount) => {
+    const response = await fetch(`${baseURL}/get-last-emotion/${userId}/${lastEmotionsCount}/`);
+    console.log(await handleData(response));
 }

@@ -1,5 +1,6 @@
 import { baseURL, handleData } from "./utills";
 
+
 export const sendRecording = async (formData, audioLength) => {
     const response = await fetch(`${baseURL}/emotion-recognize/`, {
         method: 'POST',
@@ -10,7 +11,7 @@ export const sendRecording = async (formData, audioLength) => {
 
     setTimeout(
         getLastEmotion,
-        audioLength / 2,
+        audioLength,
         data.data.owner_id,
         data.current_emotions_count
     );
@@ -18,5 +19,62 @@ export const sendRecording = async (formData, audioLength) => {
 
 export const getLastEmotion = async (userId, lastEmotionsCount) => {
     const response = await fetch(`${baseURL}/get-last-emotion/${userId}/${lastEmotionsCount}/`);
-    console.log(await handleData(response));
+    await handleData(response);
+}
+
+export const searchForUsersView = async (userId, searchedUsername, token) => {
+    const response = await fetch(`${baseURL}/search-for-users/${userId}?username=${searchedUsername}`, {
+        headers: {
+            'Authorization': `Token ${token}`
+        }
+    });
+    await handleData(response);
+}
+
+export const sendUserRequest = async (userId, userToSendRequestId, token) => {
+    const response = await fetch(`${baseURL}/send-user-request/`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Token ${token}`
+        },
+        body: JSON.stringify({
+            'user_id': userId,
+            'user_to_send_request_id': userToSendRequestId
+        })
+    });
+    await handleData(response);
+}
+
+export const getPendingUserRequests = async (userId, token) => {
+    const response = await fetch(`${baseURL}/pending-user-requests/${userId}`, {
+        headers: {
+            'Authorization': `Token ${token}`
+        }
+    });
+    await handleData(response);
+}
+
+export const handlePendingUserRequest = async (userId, userToHandleId, choice, token) => {
+    const response = await fetch(`${baseURL}/pending-user-requests/${userId}/`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Token ${token}`
+        },
+        body: JSON.stringify({
+            'user_id': userToHandleId,
+            'choice': choice
+        })
+    });
+    await handleData(response);
+}
+
+export const receiveDataFromUsers = async (userId, token) => {
+    const response = await fetch(`${baseURL}/receive-data-users/${userId}`, {
+        headers: {
+            'Authorization': `Token ${token}`
+        }
+    });
+    await handleData(response);
 }

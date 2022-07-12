@@ -29,7 +29,7 @@ export default function RecordSound() {
     }
 
     const onStop = (audioData) => {
-        handleSave(audioData)
+        handleSave(audioData);
     }
 
     const handleSave = async (audioData) => {

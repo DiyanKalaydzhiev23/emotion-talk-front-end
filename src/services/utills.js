@@ -8,4 +8,6 @@ export const handleData = async (response) => {
    return data;
 }
 
-export const baseURL = 'http://127.0.0.1:8000';
+
+const debug = false
+export const baseURL = debug ? 'http://127.0.0.1:8000' : 'https://emotion-talk.herokuapp.com';

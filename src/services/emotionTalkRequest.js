@@ -8,18 +8,7 @@ export const sendRecording = async (formData, audioLength) => {
     });
 
     const data = await handleData(response);
-
-    setTimeout(
-        getLastEmotion,
-        audioLength,
-        data.data.owner_id,
-        data.current_emotions_count
-    );
-}
-
-export const getLastEmotion = async (userId, lastEmotionsCount) => {
-    const response = await fetch(`${baseURL}/get-last-emotion/${userId}/${lastEmotionsCount}/`);
-    await handleData(response);
+    console.log(data);
 }
 
 export const searchForUsersView = async (userId, searchedUsername, token) => {

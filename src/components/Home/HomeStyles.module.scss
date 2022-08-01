@@ -17,7 +17,7 @@ body {
   
 @keyframes AnimateBG { 
     0%{background-position:0% 50%}
-    50%{background-position:100% 50%}
+    50%{background-position:100% 50%} // first param 50 for mobile
     100%{background-position:0% 50%}
 }
 
@@ -44,7 +44,7 @@ h2 {
     transform: rotate(-45deg);
 }
 
-p {
+.options p {
     position: relative;
     top: 70px;
     left: -40px;

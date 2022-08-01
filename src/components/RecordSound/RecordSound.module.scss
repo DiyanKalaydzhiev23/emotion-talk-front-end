@@ -1,0 +1,166 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:700,300);
+
+%pseudo {
+	content: '';
+	display: inline-block;
+}
+
+%absolute-center {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+}
+
+$frame-bg: linear-gradient(45deg, #7B1FA2 50%, #F06292 90%);
+
+input { display: none; }
+
+$circle-size: 130px;
+$stroke-color: #F5F5F5;
+svg {
+	@extend %absolute-center;
+	width: $circle-size;
+	height: $circle-size;
+	margin-top: $circle-size * -0.5;
+	margin-left: $circle-size * -0.5;
+	.circleSvg {
+		stroke: $stroke-color;
+		stroke-width: 3;
+		fill: transparent;
+	}
+}
+
+$mic-size: 85px;
+$mic-color: linear-gradient(45deg, #E0E0E0 50%, white 50%);
+.mic {
+	width: $mic-size;
+	height: $mic-size;
+	@extend %absolute-center;
+	margin-top: $mic-size * -0.5;
+	margin-left: $mic-size * -0.5;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	transition: all 0.3s ease;
+	&__head {
+		background: $mic-color;
+		width: $mic-size * 0.3;
+		width: 30px;
+		height: $mic-size * 0.75;
+		border-radius: 30px;
+		&::after {
+			@extend %pseudo;
+			@extend %absolute-center;
+			top: 10%;
+			background: $frame-bg;
+			width: 8px;
+			height: 20px;
+			border-radius: inherit;
+			transform: translate(-50%);
+		}
+	}
+	&__neck {
+		background: $mic-color;
+		width: $mic-size * 0.05;
+		height: $mic-size * 0.2;
+	}
+	&__leg {
+		background: $mic-color;
+		width: $mic-size * 0.3;
+		height: $mic-size * 0.05;
+		border-radius: 50px;
+	}
+}
+
+.recording {
+	@extend %absolute-center;
+	width: $mic-size;
+	height: $mic-size;
+	margin-top: $mic-size * -0.5;
+	margin-left: $mic-size * -0.5;
+	transform: scale(0.5);
+	opacity: 0;
+	transition: all 0.3s 0s ease;
+}
+.round {
+	$round-size: $mic-size * 0.15;
+	@extend %absolute-center;
+	background: white;
+	width: $round-size;
+	height: $round-size;
+	border-radius: 50%;
+	margin-top: $round-size * -0.5;
+	margin-left: $round-size * -0.5;
+	animation: recording 1s ease-in-out infinite;
+	box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.15);
+	&:first-child { left: 20%; }
+	&:nth-child(2) { animation-delay: 0.15s; }
+	&:last-child {
+		left: 80%;
+		animation-delay: 0.3s;
+	}
+}
+
+.toggleLabel {
+	@extend %absolute-center;
+	display: inline-block;
+	width: $circle-size;
+	height: $circle-size;
+	margin-top: $circle-size * -0.5;
+	margin-left: $circle-size * -0.5;
+	cursor: pointer;
+}
+
+#recordToggle:checked {
+	~ svg {
+		animation: spinning 3s ease-in-out infinite alternate;
+		.circleSvg {
+			stroke-dasharray: 300;
+			stroke-dashoffset: 300;
+			animation: dash 3s ease-in-out infinite alternate;
+		}
+	}
+	
+	~ .mic {
+		transform: scale(1.128);
+		animation: gone 0.5s 0.3s ease;
+		animation-fill-mode: forwards;
+	}
+	
+	~ .recording {
+		opacity: 1;
+		transform: scale(0.98);
+		transition-delay: 0.3s;
+	}
+}
+
+
+@keyframes spinning {
+	to { transform: rotatez(360deg); }
+}
+
+@keyframes gone {
+	to {
+		transform: scale(0.5);
+		opacity: 0;
+	}
+}
+
+@keyframes recording {
+	0% { transform: translatey(0%); }
+	30% { transform: translatey(-30%); }
+	60% { transform: translatey(30%); }
+	90% { transform: translatey(0%); }
+}
+
+@keyframes dash {
+	from { stroke-dashoffset: 300; }
+	to {
+		stroke-dashoffset: 0;
+	}
+}
+
+
+.pg {
+	margin-top: 150px;
+}

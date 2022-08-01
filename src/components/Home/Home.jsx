@@ -1,5 +1,7 @@
+import { Link } from "react-router-dom";
 import Navigation from "../Navigation/Navigation";
 import HomeStyles from './HomeStyles.module.scss';
+
 
 
 export default function Home() {
@@ -19,7 +21,7 @@ export default function Home() {
                     <h2 id={HomeStyles.tryFree}>Try Free</h2>
                     <p>Talk with AI and let it guess your emotion</p>
                     <span>
-                        <a className={HomeStyles.justTry} href="#">Let's Go</a>
+                        <Link to="/record" className={HomeStyles.justTry}>Let's Go</Link>
                     </span>
                 </div>
             </div>

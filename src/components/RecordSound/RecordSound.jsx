@@ -11,6 +11,10 @@ export default function RecordSound() {
         recordState: null
     });
 
+    const [displayWavesState, setDisplayWavesState] = useState('none');
+
+    const [displayLineState, setDisplayLineState] = useState('block');
+
     const [micState, setMicState] = useState('Start');
 
     const [audioLength, setAudioLength] = useState({
@@ -21,6 +25,10 @@ export default function RecordSound() {
         setFunc(() => () => stop());
 
         setMicState('Stop');
+
+        setDisplayWavesState('block');
+
+        setDisplayLineState('none');
 
         setAudioState({
             recordState: RecordState.START
@@ -33,6 +41,10 @@ export default function RecordSound() {
 
     const stop = () => {
         setFunc(() => () => start());
+
+        setDisplayWavesState('none');
+
+        setDisplayLineState('block');
 
         setMicState('Start');
 
@@ -67,6 +79,35 @@ export default function RecordSound() {
             <Navigation/>
             <VideoPlay/>
             <AudioReactRecorder canvasWidth="0" canvasHeight="0" state={recordState} onStop={onStop} />
+
+            <div className={RecordStyles.stoppedBar} style={{display: displayLineState}}></div>
+
+            <div className={`${RecordStyles.cssAnimation} ${RecordStyles.elementToFadeInAndOut}`} style={{display: displayWavesState}}>
+                <div className={RecordStyles.wrapper}>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
 
             <div className={RecordStyles.frame}>
                 <input onChange={func} type="checkbox" name="toggle" id={RecordStyles.recordToggle} />

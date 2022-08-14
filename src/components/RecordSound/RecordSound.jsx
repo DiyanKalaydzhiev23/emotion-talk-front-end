@@ -11,6 +11,8 @@ export default function RecordSound() {
         recordState: null
     });
 
+    const [disableBtn, setDisableBtn] = useState(RecordStyles.visible);
+
     const [displayWavesState, setDisplayWavesState] = useState('none');
 
     const [displayLineState, setDisplayLineState] = useState('block');
@@ -19,7 +21,7 @@ export default function RecordSound() {
 
     const [audioLength, setAudioLength] = useState({
         start: null
-    })
+    });
 
     const start = () => {
         setFunc(() => () => stop());
@@ -74,12 +76,25 @@ export default function RecordSound() {
     
     const [func, setFunc] = useState(() => () => start());
 
+    setInterval(
+        setDisableBtn(RecordSound.nonVisible),
+        1000
+    );
+
     return (
         <div>
             <Navigation/>
+
+            <div className={RecordStyles.textBox}>
+                <p className={RecordStyles.animTypewriter}>
+                    Hello, I'm Maria. Let me guess what are you feeling.
+                </p>
+            </div>
+
             <VideoPlay/>
             <AudioReactRecorder canvasWidth="0" canvasHeight="0" state={recordState} onStop={onStop} />
 
+            <div className={disableBtn}></div>
             <div className={RecordStyles.stoppedBar} style={{display: displayLineState}}></div>
 
             <div className={`${RecordStyles.cssAnimation} ${RecordStyles.elementToFadeInAndOut}`} style={{display: displayWavesState}}>
@@ -108,6 +123,8 @@ export default function RecordSound() {
                     <div></div>
                 </div>
             </div>
+
+            <div className=''></div>
 
             <div className={RecordStyles.frame}>
                 <input onChange={func} type="checkbox" name="toggle" id={RecordStyles.recordToggle} />

@@ -1,35 +1,60 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import useInterval from '../../hooks/useInterval';
 import AudioReactRecorder, { RecordState } from 'audio-react-recorder';
 import { sendRecording } from '../../services/emotionTalkRequest';
 import Navigation from "../Navigation/Navigation";
 import VideoPlay from '../VideoPlay/VideoPlay';
+import ProgressBar from '../ProgressBar/ProgressBar';
 import RecordStyles from './RecordSound.module.scss';
 
  
 export default function RecordSound() {  
-    const [audioState, setAudioState] = useState({
-        recordState: null
-    });
-
-    const [disableBtn, setDisableBtn] = useState(RecordStyles.visible);
-
+    const [audioState, setAudioState] = useState({recordState: null});
+    const [timeout, setTimeoutCustom] = useState(0);
+    const [trackLength, setTrackLength] = useState(0);
+    const [addToBar, setAddToBar] = useState(0);
+    const [completed, setCompleted] = useState(0);
+    const [disableBtn, setDisableBtn] = useState(RecordStyles.nonVisible);
     const [displayWavesState, setDisplayWavesState] = useState('none');
-
     const [displayLineState, setDisplayLineState] = useState('block');
-
     const [micState, setMicState] = useState('Start');
+    const [audioLength, setAudioLength] = useState({start: null});
 
-    const [audioLength, setAudioLength] = useState({
-        start: null
-    });
+    const calculateTimeout = (audioLengthData) => {
+        const timings = {
+            6000: audioLengthData / 1,
+            18000: audioLengthData / 2,
+            36000: audioLengthData / 3,
+            64000: audioLengthData / 4,
+            128000: audioLengthData / 5,
+        };
+
+        let t = 0;
+
+        for (let [time, aLength] of Object.entries(timings)) {
+            if (audioLengthData <= Number(time)) {
+                t = aLength / 100;
+                break;
+            }
+        }
+
+        if (audioLengthData <= 2000) {
+            t = -1;
+        }
+
+        if (t == 0) console.log("too big");
+
+        return t;
+    }
 
     const start = () => {
         setFunc(() => () => stop());
 
         setMicState('Stop');
+        setCompleted(0);
+        setAddToBar(0);
 
         setDisplayWavesState('block');
-
         setDisplayLineState('none');
 
         setAudioState({
@@ -45,7 +70,6 @@ export default function RecordSound() {
         setFunc(() => () => start());
 
         setDisplayWavesState('none');
-
         setDisplayLineState('block');
 
         setMicState('Start');
@@ -62,24 +86,29 @@ export default function RecordSound() {
     const handleSave = async (audioData) => {
         const audioBlob = await fetch(audioData.url).then((r) => r.blob());
         const audioFile = new File([audioBlob], 'voice.wav', { type: 'audio/wav' });
-        const audioLengthData = new Date() - audioLength.start;
+        const audioLengthData = (new Date() - audioLength.start);
     
         const formData = new FormData();
 
         formData.append('recording', audioFile);
         formData.append('owner_id', 1);
-
+        
+        setTrackLength(audioLengthData);
         sendRecording(formData, audioLengthData);
+        setTimeoutCustom(calculateTimeout(audioLengthData));
+        setAddToBar(1);
     };
 
     const { recordState } = audioState
     
     const [func, setFunc] = useState(() => () => start());
 
-    setInterval(
-        setDisableBtn(RecordSound.nonVisible),
-        1000
-    );
+    useEffect(() => {
+        const timer = setTimeout(() => setDisableBtn(RecordStyles.visible), 5000);
+    }, []);
+
+
+    useInterval(() => setCompleted(completed + addToBar), timeout);
 
     return (
         <div>
@@ -93,9 +122,8 @@ export default function RecordSound() {
 
             <VideoPlay/>
             <AudioReactRecorder canvasWidth="0" canvasHeight="0" state={recordState} onStop={onStop} />
-
+            <ProgressBar completed={completed} audioLengthData={trackLength} displayLine={displayLineState} />
             <div className={disableBtn}></div>
-            <div className={RecordStyles.stoppedBar} style={{display: displayLineState}}></div>
 
             <div className={`${RecordStyles.cssAnimation} ${RecordStyles.elementToFadeInAndOut}`} style={{display: displayWavesState}}>
                 <div className={RecordStyles.wrapper}>
@@ -123,8 +151,6 @@ export default function RecordSound() {
                     <div></div>
                 </div>
             </div>
-
-            <div className=''></div>
 
             <div className={RecordStyles.frame}>
                 <input onChange={func} type="checkbox" name="toggle" id={RecordStyles.recordToggle} />

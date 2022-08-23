@@ -6,6 +6,8 @@ import Navigation from "../Navigation/Navigation";
 import VideoPlay from '../VideoPlay/VideoPlay';
 import ProgressBar from '../ProgressBar/ProgressBar';
 import RecordStyles from './RecordSound.module.scss';
+import MicWaves from '../MicWaves/MicWaves';
+import TypeWriterTextBox from '../TypeWriterTextBox/TypeWriterTextBox';
 
  
 export default function RecordSound() {  
@@ -19,6 +21,7 @@ export default function RecordSound() {
     const [displayLineState, setDisplayLineState] = useState('block');
     const [micState, setMicState] = useState('Start');
     const [audioLength, setAudioLength] = useState({start: null});
+    const [func, setFunc] = useState(() => () => start());
 
     const calculateTimeout = (audioLengthData) => {
         const timings = {
@@ -99,58 +102,22 @@ export default function RecordSound() {
         setAddToBar(1);
     };
 
-    const { recordState } = audioState
-    
-    const [func, setFunc] = useState(() => () => start());
-
     useEffect(() => {
         const timer = setTimeout(() => setDisableBtn(RecordStyles.visible), 5000);
     }, []);
-
 
     useInterval(() => setCompleted(completed + addToBar), timeout);
 
     return (
         <div>
             <Navigation/>
-
-            <div className={RecordStyles.textBox}>
-                <p className={RecordStyles.animTypewriter}>
-                    Hello, I'm Maria. Let me guess what are you feeling.
-                </p>
-            </div>
-
+            <TypeWriterTextBox/>
             <VideoPlay/>
-            <AudioReactRecorder canvasWidth="0" canvasHeight="0" state={recordState} onStop={onStop} />
+            <AudioReactRecorder canvasWidth="0" canvasHeight="0" state={audioState.recordState} onStop={onStop} />
             <ProgressBar completed={completed} audioLengthData={trackLength} displayLine={displayLineState} />
-            <div className={disableBtn}></div>
+            <MicWaves displayWaves={displayWavesState}/>
 
-            <div className={`${RecordStyles.cssAnimation} ${RecordStyles.elementToFadeInAndOut}`} style={{display: displayWavesState}}>
-                <div className={RecordStyles.wrapper}>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </div>
-            </div>
+            <div className={disableBtn}></div>
 
             <div className={RecordStyles.frame}>
                 <input onChange={func} type="checkbox" name="toggle" id={RecordStyles.recordToggle} />

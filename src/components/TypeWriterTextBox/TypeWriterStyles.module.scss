@@ -1,0 +1,27 @@
+.textBox p {
+    top: 30%;  
+    width: 24em;
+	font-size: 24px;
+	font-family: 'Roboto Mono', monospace;
+    margin: 0 auto;
+    border-right: 2px solid rgba(255,255,255,.75);
+    font-size: 180%;
+    white-space: nowrap;
+    overflow: hidden;
+    transform: translateY(-410%); 
+}
+
+.animTypewriter {
+	animation: typewriter 3s steps(44) 0.5s 1 normal both,
+	blinkTextCursor 1000ms steps(44) infinite normal;
+}
+
+@keyframes typewriter{
+	from{width: 0;}
+	to{width: 100%;}
+}
+
+@keyframes blinkTextCursor{
+	from{border-right-color: rgba(255,255,255,.75);}
+	to{border-right-color: transparent;}
+}

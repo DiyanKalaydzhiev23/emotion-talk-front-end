@@ -1,13 +1,25 @@
 import { Link } from "react-router-dom";
 import Navigation from "../Navigation/Navigation";
 import HomeStyles from './HomeStyles.module.scss';
-
+import Particles from 'react-particles';
+import { loadFull } from "tsparticles";
+import { useCallback } from "react";
 
 
 export default function Home() {
+
+    const particlesInit = useCallback(async (engine) => {
+        await loadFull(engine);
+    }, []);
+
     return (
         <>
             <Navigation/>
+
+            <div id={HomeStyles.particlesJs}></div>
+
+            <Particles id="tsparticles" url="particlesjs-config.json" init={particlesInit}/>
+
             <div className={HomeStyles.options}>
                 <div>
                     <h2>Professional</h2>
@@ -25,6 +37,7 @@ export default function Home() {
                     </span>
                 </div>
             </div>
+
         </>        
     );
 }

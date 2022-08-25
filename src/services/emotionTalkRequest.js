@@ -7,8 +7,7 @@ export const sendRecording = async (formData, audioLength) => {
         body: formData
     });
 
-    const data = await handleData(response);
-    console.log(data);
+    return await handleData(response);
 }
 
 export const searchForUsersView = async (userId, searchedUsername, token) => {

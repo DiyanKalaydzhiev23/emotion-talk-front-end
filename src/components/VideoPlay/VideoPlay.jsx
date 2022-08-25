@@ -1,9 +1,11 @@
 import VideoStyles from './VideoPlay.module.css'
 
 
-export default function VideoPlay() {   
+export default function VideoPlay(props) {
+    const { videoURL } = props; 
+    
     return (
-        <video src="helloMaria.webm" autoPlay>
+        <video src={videoURL} autoPlay>
             Sorry, your browser doesn't support embedded videos.
         </video>
     );

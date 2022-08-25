@@ -8,9 +8,15 @@ import ProgressBar from '../ProgressBar/ProgressBar';
 import RecordStyles from './RecordSound.module.scss';
 import MicWaves from '../MicWaves/MicWaves';
 import TypeWriterTextBox from '../TypeWriterTextBox/TypeWriterTextBox';
-
+import { emotionsTextData } from '../../services/utills';
  
+
 export default function RecordSound() {  
+    const [video, setVideo] = useState("helloMaria.webm");
+    const [videoReady, setVideoReady] = useState("");
+    const [textToDisplay, setTextToDisplay] = useState("Hello, I'm Maria. Let me guess what are you feeling.");
+    const [textToDisplayReady, setTextToDisplayReady] = useState("");
+    const [textDisplaySeconds, setTextDisplaySeconds] = useState(3);
     const [audioState, setAudioState] = useState({recordState: null});
     const [timeout, setTimeoutCustom] = useState(0);
     const [trackLength, setTrackLength] = useState(0);
@@ -51,22 +57,33 @@ export default function RecordSound() {
     }
 
     const start = () => {
-        setFunc(() => () => stop());
+        setTextDisplaySeconds(1);
+        setDisableBtn(RecordStyles.nonVisible);
+        setVideo('listening.webm');
+        setVideoReady('listening.webm');
+        setTextToDisplay('I am listening.');
+        setTextToDisplayReady('I am listening.');
 
-        setMicState('Stop');
-        setCompleted(0);
-        setAddToBar(0);
+        setTimeout(() => {
+            setFunc(() => () => stop());
+    
+            setMicState('Stop');
+            setCompleted(0);
+            setAddToBar(0);
+    
+            setDisplayWavesState('block');
+            setDisplayLineState('none');
+    
+            setAudioState({
+                recordState: RecordState.START
+            });
+            
+            setAudioLength({
+                start: new Date()
+            });
 
-        setDisplayWavesState('block');
-        setDisplayLineState('none');
-
-        setAudioState({
-            recordState: RecordState.START
-        });
-        
-        setAudioLength({
-            start: new Date()
-        });
+            setDisableBtn(RecordStyles.visible);
+        }, 2000);
     }
 
     const stop = () => {
@@ -76,6 +93,8 @@ export default function RecordSound() {
         setDisplayLineState('block');
 
         setMicState('Start');
+
+        setTextToDisplay(' ');
 
         setAudioState({
             recordState: RecordState.STOP
@@ -97,22 +116,45 @@ export default function RecordSound() {
         formData.append('owner_id', 1);
         
         setTrackLength(audioLengthData);
-        sendRecording(formData, audioLengthData);
         setTimeoutCustom(calculateTimeout(audioLengthData));
         setAddToBar(1);
+        const emotionResult = await sendRecording(formData, audioLengthData);
+        displayEmotionResult(emotionResult);
     };
+
+    const displayEmotionResult = (emotionData) => {
+        let emotionToDisplay = Math.floor(Math.random() * 4) + 1;
+
+        while (`${emotionData.emotion}${emotionToDisplay}` == videoReady) {
+            emotionToDisplay = Math.floor(Math.random() * 4) + 1;
+        }
+
+        setVideoReady(`${emotionData.emotion}${emotionToDisplay}.webm`);
+        setTextToDisplayReady(`${emotionData.emotion}${emotionToDisplay}`);
+
+        if (emotionData.emotion == "neutral") {
+            setVideoReady('neutral.webm');
+        }
+    }
 
     useEffect(() => {
         const timer = setTimeout(() => setDisableBtn(RecordStyles.visible), 5000);
     }, []);
 
-    useInterval(() => setCompleted(completed + addToBar), timeout);
+    useInterval(() => {
+        setCompleted(completed + addToBar)
+    
+        if (completed >= 100) {
+            setVideo(String(videoReady));
+            setTextToDisplay(emotionsTextData[textToDisplayReady]);
+        }
+    }, timeout);
 
     return (
         <div>
             <Navigation/>
-            <TypeWriterTextBox/>
-            <VideoPlay/>
+            <TypeWriterTextBox animSec={textDisplaySeconds} text={textToDisplay}/>
+            <VideoPlay videoURL={video}/>
             <AudioReactRecorder canvasWidth="0" canvasHeight="0" state={audioState.recordState} onStop={onStop} />
             <ProgressBar completed={completed} audioLengthData={trackLength} displayLine={displayLineState} />
             <MicWaves displayWaves={displayWavesState}/>

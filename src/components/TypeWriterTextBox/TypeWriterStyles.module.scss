@@ -11,12 +11,17 @@
     transform: translateY(-410%); 
 }
 
-.animTypewriter {
+.animTypewriter1sec {
+	animation: typewriter 1s steps(44) 0.5s 1 normal both,
+	blinkTextCursor 1000ms steps(44) infinite normal;
+}
+
+.animTypewriter3sec {
 	animation: typewriter 3s steps(44) 0.5s 1 normal both,
 	blinkTextCursor 1000ms steps(44) infinite normal;
 }
 
-@keyframes typewriter{
+@keyframes typewriter {
 	from{width: 0;}
 	to{width: 100%;}
 }

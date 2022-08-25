@@ -2,11 +2,12 @@ import TypeWriterStyles from './TypeWriterStyles.module.scss';
 
 
 export default function TypeWriterTextBox(props) {
-    
+    const { text, animSec } = props;
+
     return (
         <div className={TypeWriterStyles.textBox}>
-            <p className={TypeWriterStyles.animTypewriter}>
-                Hello, I'm Maria. Let me guess what are you feeling.
+            <p key={text} className={animSec == 1 ? TypeWriterStyles.animTypewriter1sec : TypeWriterStyles.animTypewriter3sec}>
+                {text}
             </p>
         </div>
     );

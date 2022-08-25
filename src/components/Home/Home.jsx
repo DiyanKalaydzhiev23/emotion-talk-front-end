@@ -33,7 +33,7 @@ export default function Home() {
                     <h2 id={HomeStyles.tryFree}>Try Free</h2>
                     <p>Talk with AI and let it guess your emotion</p>
                     <span>
-                        <Link to="/record" className={HomeStyles.justTry}>Let's Go</Link>
+                        <Link to="/emotion-talk" className={HomeStyles.justTry}>Let's Go</Link>
                     </span>
                 </div>
             </div>

@@ -164,6 +164,12 @@ $mic-color: linear-gradient(45deg, #E0E0E0 50%, white 50%);
 	}
 }
 
+#randomText {
+	position: absolute;
+	top: 550px;
+	left: 880px;
+}
+
 
 @keyframes spinning {
 	to { transform: rotatez(360deg); }

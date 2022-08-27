@@ -29,7 +29,7 @@ export default function Home() {
                         <a className={HomeStyles.register} href="#">Register</a>
                     </span>
                 </div>
-                <div>
+                <div className={HomeStyles.tryFreeSection}>
                     <h2 id={HomeStyles.tryFree}>Try Free</h2>
                     <p>Talk with AI and let it guess your emotion</p>
                     <span>
@@ -37,7 +37,6 @@ export default function Home() {
                     </span>
                 </div>
             </div>
-
         </>        
     );
 }

@@ -15,8 +15,9 @@ export default function RecordSound() {
     const [video, setVideo] = useState("helloMaria.webm");
     const [videoReady, setVideoReady] = useState("");
     const [textToDisplay, setTextToDisplay] = useState("Hello, I'm Maria. Let me guess what are you feeling.");
-    const [textToDisplayReady, setTextToDisplayReady] = useState("");
+    const [textToDisplayReady, setTextToDisplayReady] = useState('');
     const [textDisplaySeconds, setTextDisplaySeconds] = useState(3);
+    const [randomText, setRandomText] = useState('');
     const [audioState, setAudioState] = useState({recordState: null});
     const [timeout, setTimeoutCustom] = useState(0);
     const [trackLength, setTrackLength] = useState(0);
@@ -51,7 +52,7 @@ export default function RecordSound() {
             t = -1;
         }
 
-        if (t == 0) console.log("too big");
+        if (t == 0) console.log('too big');
 
         return t;
     }
@@ -118,17 +119,20 @@ export default function RecordSound() {
         setTrackLength(audioLengthData);
         setTimeoutCustom(calculateTimeout(audioLengthData));
         setAddToBar(1);
+        setRandomText('Sending Data');
         const emotionResult = await sendRecording(formData, audioLengthData);
         displayEmotionResult(emotionResult);
     };
 
     const displayEmotionResult = (emotionData) => {
         let emotionToDisplay = Math.floor(Math.random() * 4) + 1;
-
+        
         while (`${emotionData.emotion}${emotionToDisplay}` == videoReady) {
             emotionToDisplay = Math.floor(Math.random() * 4) + 1;
         }
 
+        setRandomText('');
+        setCompleted(100);
         setVideoReady(`${emotionData.emotion}${emotionToDisplay}.webm`);
         setTextToDisplayReady(`${emotionData.emotion}${emotionToDisplay}`);
 
@@ -150,6 +154,23 @@ export default function RecordSound() {
         }
     }, timeout);
 
+    useInterval(() => {
+        if (randomText != '') {
+            let randomIndex = Math.floor(Math.random() * 6);
+            let textOptions = [
+                'Analyzing',
+                'Transforming audio',
+                'Relistening',
+                'Compiling data',
+                'Calculating response',
+                'Fetching data from audio',
+                'Fetching data from response'
+            ];
+            console.log(1);
+            setRandomText(textOptions[randomIndex]);
+        }
+    }, 1500);
+
     return (
         <div>
             <Navigation/>
@@ -160,6 +181,8 @@ export default function RecordSound() {
             <MicWaves displayWaves={displayWavesState}/>
 
             <div className={disableBtn}></div>
+
+            <p id={RecordStyles.randomText}>{randomText}</p>
 
             <div className={RecordStyles.frame}>
                 <input onChange={func} type="checkbox" name="toggle" id={RecordStyles.recordToggle} />

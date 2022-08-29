@@ -1,0 +1,36 @@
+.containerStyles {
+    position: absolute;
+    bottom: 121px;
+    left: 600px;
+    height: 15px;
+    width: 39vw;
+    background-color: #e0e0de;
+    border-radius: 50px;
+    margin: 50px;
+}
+
+.labelStyles {
+    position: absolute;
+    bottom: -11px;
+    margin: 0 0 10px 5px;
+    color: white;
+    font-weight: bold;
+    transform: rotate(0deg);
+}
+
+@media (max-width: 1250px) and (max-height: 920px) {
+    .containerStyles {
+        bottom: 22vh;
+        left: 0;
+        height: 15px;
+        width: 10vw;
+    }
+}
+
+@media (max-width: 450px) {
+    .containerStyles {
+        top: 37%;
+        left: 25%;
+        width: 46vw;
+    }
+}

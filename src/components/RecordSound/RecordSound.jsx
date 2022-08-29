@@ -146,7 +146,9 @@ export default function RecordSound() {
     }, []);
 
     useInterval(() => {
-        setCompleted(completed + addToBar)
+        if (completed < 99) {
+            setCompleted(completed + addToBar)
+        }
     
         if (completed >= 100) {
             setVideo(String(videoReady));
@@ -166,7 +168,6 @@ export default function RecordSound() {
                 'Fetching data from audio',
                 'Fetching data from response'
             ];
-            console.log(1);
             setRandomText(textOptions[randomIndex]);
         }
     }, 1500);
@@ -175,8 +176,12 @@ export default function RecordSound() {
         <div>
             <Navigation/>
             <TypeWriterTextBox animSec={textDisplaySeconds} text={textToDisplay}/>
-            <VideoPlay videoURL={video}/>
-            <AudioReactRecorder canvasWidth="0" canvasHeight="0" state={audioState.recordState} onStop={onStop} />
+            <div className={RecordStyles.videoFrame}>
+                <VideoPlay videoURL={video}/>
+            </div>
+            <div style={{display: 'none'}}>
+                <AudioReactRecorder canvasWidth="0" canvasHeight="0" state={audioState.recordState} onStop={onStop} />
+            </div>
             <ProgressBar completed={completed} audioLengthData={trackLength} displayLine={displayLineState} />
             <MicWaves displayWaves={displayWavesState}/>
 

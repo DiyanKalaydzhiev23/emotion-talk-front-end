@@ -30,3 +30,29 @@
 	from{border-right-color: rgba(255,255,255,.75);}
 	to{border-right-color: transparent;}
 }
+
+@media (max-width: 1250px) {
+	.textBox p {
+		font-size: 150%;
+	}
+}
+
+@media (max-width: 450px) {
+	.textBox p {
+		font-size: 105%;
+		transform: translateY(-1000%); 
+	}
+}
+
+@media (max-width: 370px) {
+	.textBox p {
+		font-size: 95%;
+	}
+}
+
+@media (max-height: 729px) {
+	.textBox p {
+		top: 50%;
+		left: 27%;
+	}
+}

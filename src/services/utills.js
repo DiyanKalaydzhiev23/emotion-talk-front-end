@@ -27,7 +27,7 @@ const emotionsTextData = {
     'sad3': 'I think that you are sad.',
     'sad4': 'I am most certain that you are sad.',
     'neutral': 'You sound neutral to me.',
-    'listening': 'I am Listening.'
+    'listening': 'I am listening.'
 }
 
 export {

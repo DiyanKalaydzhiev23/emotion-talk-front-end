@@ -1,3 +1,6 @@
+import ProgressBarStyles from './ProgressBarStyles.module.css';
+
+
 export default function ProgressBar (props) {
     let { completed, audioLengthData, displayLine } = props;
     let multiply = 1;
@@ -8,7 +11,7 @@ export default function ProgressBar (props) {
         multiply = 2;
     }
 
-    if (completed > 100) {
+    if (completed >= 100) {
         completed = 100;
         multiply = 1;
     }
@@ -16,19 +19,7 @@ export default function ProgressBar (props) {
     const divBoxStyles = {
         display: displayLine
     }
-
-
-    const containerStyles = {
-        position: "absolute",
-        bottom: 121,
-        left: 600,
-        height: 15,
-        width: '39vw',
-        backgroundColor: "#e0e0de",
-        borderRadius: 50,
-        margin: 50
-    }
-
+    
     const fillerStyles = {
         position: "absolute",
         height: '15px',
@@ -39,20 +30,11 @@ export default function ProgressBar (props) {
 		transition: 'width 1s ease-in-out'
     }
 
-    const labelStyles = {
-        position: "absolute",
-        bottom: -11,
-		"margin": "0 0 10px 5px",
-        color: 'white',
-        fontWeight: 'bold',
-		transform: "rotate(0deg)"
-    }
-
     return (
         <div style={divBoxStyles}>
-            <div style={containerStyles}>
+            <div className={ProgressBarStyles.containerStyles}>
                 <div style={fillerStyles}>
-                    <span style={labelStyles}>{`${completed}%`}</span>
+                    <span className={ProgressBarStyles.labelStyles}>{`${completed}%`}</span>
                 </div>
             </div>
         </div>

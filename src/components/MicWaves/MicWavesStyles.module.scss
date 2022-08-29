@@ -3,7 +3,6 @@
     animation: fade 2s linear;
 }
 
-
 @keyframes fade {
   0%, 30% { opacity: 0 }
 
@@ -11,7 +10,9 @@
 
 .cssAnimation {
 	overflow: hidden;
-	padding-top: 560px;
+	position: absolute;
+	top: 59vh;
+	left: 23vw;
 	padding-left: 350px;
 }
 
@@ -230,3 +231,31 @@
 		background: #5b38ee;
 	}
 } 
+
+@media (max-width: 1250px) and (max-height: 800px) {
+	.cssAnimation .wrapper {
+		position: absolute;
+		top: 61vh;
+		left: 3vw;		
+		width: 5vw;
+		height: 30vh;
+		padding-top: 0.1vh;
+	}
+}
+
+@media (max-width: 450px) {
+	.cssAnimation .wrapper {
+		position: absolute;
+		width: 20vw;
+		height: 20vh;
+		padding-top: 0.1vh;
+	}
+
+	.cssAnimation {
+		position: absolute;
+		padding-top: 0.1vh;
+		top: 39%;
+		left: -45%;
+		overflow: hidden;
+	}
+}

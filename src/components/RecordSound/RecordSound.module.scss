@@ -13,7 +13,7 @@ body {
 %absolute-center {
 	position: absolute;
 	top: 75%;
-	left: 35%;
+	left: 38%;
 }
 
 $frame-bg: linear-gradient(45deg, #7B1FA2 50%, #F06292 90%);
@@ -170,7 +170,6 @@ $mic-color: linear-gradient(45deg, #E0E0E0 50%, white 50%);
 	left: 880px;
 }
 
-
 @keyframes spinning {
 	to { transform: rotatez(360deg); }
 }
@@ -197,10 +196,10 @@ $mic-color: linear-gradient(45deg, #E0E0E0 50%, white 50%);
 }
 
 .pg {
-	position: absolute;
+	@extend %absolute-center;
 	color: rgb(255, 255, 255);
-	top: 600px;
-	left: 490px;
+	margin-top: 70px;
+	margin-left: -45px;
 }
 
 .stoppedBar {
@@ -211,4 +210,167 @@ $mic-color: linear-gradient(45deg, #E0E0E0 50%, white 50%);
 	width: 600px;
 	background: linear-gradient(45deg, #3af9da 25%, #7B1FA2 50%, #F06292 90%);
 	border-radius: 8px;
+}
+
+@media (max-width: 1250px) and (min-width: 450px) {
+	%absolute-center {
+		top: 50%;
+		left: 10%;
+	}
+
+	.mic {
+		width: $mic-size;
+		height: $mic-size;
+		@extend %absolute-center;
+		margin-top: $mic-size * -0.5;
+		margin-left: $mic-size * -0.5;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		transition: all 0.3s ease;
+		&__head {
+			background: $mic-color;
+			width: $mic-size * 0.3;
+			width: 30px;
+			height: $mic-size * 0.75;
+			border-radius: 30px;
+			&::after {
+				@extend %pseudo;
+				@extend %absolute-center;
+				top: 10%;
+				left: 50%;
+				background: $frame-bg;
+				width: 8px;
+				height: 20px;
+				border-radius: inherit;
+				transform: translate(-50%);
+			}
+		}
+		&__neck {
+			background: $mic-color;
+			width: $mic-size * 0.05;
+			height: $mic-size * 0.2;
+		}
+		&__leg {
+			background: $mic-color;
+			width: $mic-size * 0.3;
+			height: $mic-size * 0.05;
+			border-radius: 50px;
+		}
+	}
+
+	#randomText {
+		text-align: center;
+		top: 68vh;
+		left: 5vw;
+	}
+}
+
+@media (max-width: 449px) {
+	%pseudo1 {
+		content: '';
+		display: inline-block;
+	}
+
+	%absolute-left {
+		top: 45%;
+		left: 18%;
+	}
+
+	$circle-size: 100px;
+	$mic-size: 70px;
+
+	.mic {
+		width: $mic-size;
+		height: $mic-size;
+		@extend %absolute-left;
+		margin-top: $mic-size * -0.5;
+		margin-left: $mic-size * -0.5;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		transition: all 0.3s ease;
+		&__head {
+			background: $mic-color;
+			width: $mic-size * 0.3;
+			width: 30px;
+			height: $mic-size * 0.75;
+			border-radius: 30px;
+			&::after {
+				@extend %pseudo1;
+				@extend %absolute-left;
+				top: 10%;
+				left: 50%;
+				background: $frame-bg;
+				width: 8px;
+				height: 20px;
+				border-radius: inherit;
+				transform: translate(-50%);
+			}
+		}
+		&__neck {
+			background: $mic-color;
+			width: $mic-size * 0.05;
+			height: $mic-size * 0.2;
+		}
+		&__leg {
+			background: $mic-color;
+			width: $mic-size * 0.3;
+			height: $mic-size * 0.05;
+			border-radius: 50px;
+		}
+	}
+
+	.recording {
+		@extend %absolute-left;
+		width: $mic-size;
+		height: $mic-size;
+		margin-top: $mic-size * -0.5;
+		margin-left: $mic-size * -0.5;
+		transform: scale(0.5);
+		opacity: 0;
+		transition: all 0.3s 0s ease;
+	}
+
+	svg {
+		@extend %absolute-left;
+		width: $circle-size;
+		height: $circle-size;
+		margin-top: $circle-size * -0.5;
+		margin-left: $circle-size * -0.5;
+		.circleSvg {
+			stroke: $stroke-color;
+			stroke-width: 3;
+			fill: transparent;
+		}
+	}
+
+	.toggleLabel {
+		@extend %absolute-left;
+		display: inline-block;
+		width: $circle-size;
+		height: $circle-size;
+		margin-top: $circle-size * -0.5;
+		margin-left: $circle-size * -0.5;
+		cursor: pointer;
+	}
+
+	.pg {
+		@extend %absolute-left;
+		margin-top: 55px;
+	}
+
+	.videoFrame {
+		position: absolute;
+		left: -5vw;
+		bottom: 0; 
+		width: 100%;
+		overflow: hidden;
+	}
+
+	#randomText {
+		text-align: center;
+		top: 45%;
+		left: 47%;
+	}
 }

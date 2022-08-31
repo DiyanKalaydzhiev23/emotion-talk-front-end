@@ -17,7 +17,7 @@ export default function Navigation() {
     return (
         <nav>
             <Link to="/">Home</Link>
-            <a href="#">About</a>
+            <Link to="/about">About</Link>
             <a href="#">Login</a>
             <a href="#">Register</a>
             <Link to="/emotion-talk">AI Talk</Link>

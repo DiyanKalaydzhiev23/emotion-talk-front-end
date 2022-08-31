@@ -1,6 +1,6 @@
 import NavigationStyles from './NavigationStyles.module.scss';
 import { Link } from "react-router-dom";
-import { useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom';
 import { useState } from 'react';
 
 
@@ -12,6 +12,8 @@ export default function Navigation() {
         setAnim(NavigationStyles.animation5);
     } else if (location.pathname == '/' && anim != NavigationStyles.animation1) {
         setAnim(NavigationStyles.animation1);
+    } else if (location.pathname == '/about' && anim != NavigationStyles.animation2) {
+        setAnim(NavigationStyles.animation2);
     }
 
     return (

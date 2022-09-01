@@ -3,7 +3,7 @@
     margin-top: 100px;
 }
 
-.aboutPage div {
+.aboutPage div, footer div {  
     font-family: 'Roboto Mono', monospace;
     font-weight: 600;
     display: flex;
@@ -38,8 +38,18 @@
 .aboutPage .team div {
     display: block;
     margin: 0;
+    margin-top: 2vh;
 }
 
 .team img {
-    padding: 2%;
+    padding: 5vh;
+}
+
+footer {
+    padding-bottom: 20px;
+}
+
+footer div {
+    justify-content: center;
+    margin: 0 50px 0 50px !important;
 }

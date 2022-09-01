@@ -33,8 +33,9 @@ export default function About() {
                             <b>Diyan Kalaydzhiev</b> - Full Stack Developer.
                         </p>
                         <p>
-                            Diyan is the creator of EmotionTalk. He has built the API, the AI, and the Front-End. 
-                            He is a student at New Bulgarian University in Computer Science, a Content Developer, and a Lecturer at Softuni.
+                            Diyan is the creator of EmotionTalk. He has built the whole app. 
+                            He is a student at New Bulgarian University in Computer Science.
+                            One of the top 5% of students at Softuni, a Content Developer, and a Lecturer at Softuni.
                             His leading technologies are Python and JavaScript.
                         </p>
 
@@ -47,6 +48,29 @@ export default function About() {
                 <div className={AboutStyles.teamTypeHeader}>
                     <h3>Designers</h3>
                 </div>
+                <div className={AboutStyles.team}>
+                    <img src="alexandra_dobreva.png" alt="Alexandra's image" />
+                    <div>
+                        <p>
+                            <b>Alexandra Dobreva - Designer</b>
+                        </p>
+                        <p>
+                            Alexandra is the creator of the logo for EmotionTalk. 
+                            She is a student at New Bulgarian University in Graphic Design. 
+                            Аlexandra has won many national and international drawing competitions such as "The popular Vote Award 2019" and "People and Paintings. 
+                            At 18, she held her first solo exhibition at Veliko Tarnovo.
+                        </p>
+                        <ul>
+                            <li>Contact: <a href="https://www.instagram.com/alexandra_dobreva/" target="_blank">@alexandra_dobreva</a></li>
+                        </ul>
+                        </div>
+                </div>
+
+                <footer>
+                    <div>
+                        &copy;All rights reserved - EmotionTalk 2022
+                    </div>
+                </footer>
             </div>
         </>
     );

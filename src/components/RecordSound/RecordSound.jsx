@@ -7,6 +7,7 @@ import VideoPlay from '../VideoPlay/VideoPlay';
 import ProgressBar from '../ProgressBar/ProgressBar';
 import RecordStyles from './RecordSound.module.scss';
 import MicWaves from '../MicWaves/MicWaves';
+import LoadingBrain from '../LoadingBrain/LoadingBrain';
 import TypeWriterTextBox from '../TypeWriterTextBox/TypeWriterTextBox';
 import { emotionsTextData } from '../../services/utills';
  
@@ -17,6 +18,8 @@ export default function RecordSound() {
     const [textToDisplay, setTextToDisplay] = useState("Hello, I'm Maria. Let me guess what are you feeling.");
     const [textToDisplayReady, setTextToDisplayReady] = useState('');
     const [textDisplaySeconds, setTextDisplaySeconds] = useState(3);
+    const [loadingBrain, setLoadingBrain] = useState(0);
+    const [displayMic, setDisplayMic] = useState('block');
     const [randomText, setRandomText] = useState('');
     const [audioState, setAudioState] = useState({recordState: null});
     const [timeout, setTimeoutCustom] = useState(0);
@@ -92,9 +95,10 @@ export default function RecordSound() {
 
         setDisplayWavesState('none');
         setDisplayLineState('block');
+        setDisplayMic('none');
 
+        setLoadingBrain(45);
         setMicState('Start');
-
         setTextToDisplay(' ');
 
         setAudioState({
@@ -145,14 +149,22 @@ export default function RecordSound() {
         const timer = setTimeout(() => setDisableBtn(RecordStyles.visible), 5000);
     }, []);
 
+    useEffect(() => {
+        document.body.style.overflowY = "hidden";
+
+        return () => document.body.style.overflowY = "visible";
+    });
+
     useInterval(() => {
         if (completed < 99) {
-            setCompleted(completed + addToBar)
+            setCompleted(completed + addToBar);
         }
-    
+        
         if (completed >= 100) {
             setVideo(String(videoReady));
             setTextToDisplay(emotionsTextData[textToDisplayReady]);
+            setDisplayMic('block');
+            setLoadingBrain(0);
         }
     }, timeout);
 
@@ -170,7 +182,15 @@ export default function RecordSound() {
             ];
             setRandomText(textOptions[randomIndex]);
         }
+
     }, 1500);
+
+    useInterval(() => {
+        if (loadingBrain != 0) {
+            let rotation = loadingBrain + 4;
+            setLoadingBrain(rotation);
+        }
+    }, 40);
 
     return (
         <div>
@@ -184,12 +204,13 @@ export default function RecordSound() {
             </div>
             <ProgressBar completed={completed} audioLengthData={trackLength} displayLine={displayLineState} />
             <MicWaves displayWaves={displayWavesState}/>
+            <LoadingBrain rotation={loadingBrain}/>
 
             <div className={disableBtn}></div>
-
+            
             <p id={RecordStyles.randomText}>{randomText}</p>
 
-            <div className={RecordStyles.frame}>
+            <div className={RecordStyles.frame} style={{display: displayMic}}>
                 <input onChange={func} type="checkbox" name="toggle" id={RecordStyles.recordToggle} />
                 
                 <svg viewBox="0 0 100 100">
@@ -210,7 +231,7 @@ export default function RecordSound() {
                 
                 <label htmlFor={RecordStyles.recordToggle} className={RecordStyles.toggleLabel}></label>
             </div>
-            <p className={RecordStyles.pg}>Press to {micState}</p>
+            <p style={{display: displayMic}} className={RecordStyles.pg}>Press to {micState}</p>
         </div>
     );
 }

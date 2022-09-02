@@ -52,7 +52,7 @@ export default function About() {
                     <img src="alexandra_dobreva.png" alt="Alexandra's image" />
                     <div>
                         <p>
-                            <b>Alexandra Dobreva - Designer</b>
+                            <b>Alexandra Dobreva - Graphic Designer</b>
                         </p>
                         <p>
                             Alexandra is the creator of the logo for EmotionTalk. 
@@ -64,6 +64,23 @@ export default function About() {
                             <li>Contact: <a href="https://www.instagram.com/alexandra_dobreva/" target="_blank">@alexandra_dobreva</a></li>
                         </ul>
                         </div>
+                </div>
+                <div className={AboutStyles.team}>
+                    <div>
+                        <p>
+                            <b>Asya Borisova - Graphic Designer</b>
+                        </p>
+                        <p>
+                            Asya is one of the graphic designers working on EmotionTalk. 
+                            She is a student at New Bulgarian University in Graphic Design. 
+                            Asya's main goal is to be the best at what she does while doing it with great desire and diligence.
+                        </p>
+                        <ul>
+                            <li>Contact: asya.borisova03@gmail.com</li>
+                        </ul>
+                        </div>
+
+                        <img src="asya_borisova.png" alt="Asya's image" />
                 </div>
 
                 <footer>

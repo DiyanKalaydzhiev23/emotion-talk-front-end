@@ -11,6 +11,10 @@ export default function ProgressBar (props) {
         multiply = 2;
     }
 
+    if (completed == 99) {
+        multiply = 1;
+    } 
+
     if (completed >= 100) {
         completed = 100;
         multiply = 1;

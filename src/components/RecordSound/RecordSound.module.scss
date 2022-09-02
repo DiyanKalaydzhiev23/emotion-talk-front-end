@@ -141,6 +141,14 @@ $mic-color: linear-gradient(45deg, #E0E0E0 50%, white 50%);
 	cursor: pointer;
 }
 
+.brain {
+	position: absolute;
+	top: 67%;
+	left: 34%;
+	width: $circle-size;
+	height: $circle-size;
+}
+
 #recordToggle:checked {
 	~ svg {
 		animation: spinning 3s ease-in-out infinite alternate;

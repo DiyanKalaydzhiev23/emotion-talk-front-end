@@ -10,10 +10,8 @@
 
 .cssAnimation {
 	overflow: hidden;
-	position: absolute;
-	top: 59vh;
-	left: 23vw;
-	padding-left: 350px;
+	padding-left: 100px;
+	margin-top: -117px;
 }
 
 .cssAnimation .wrapper {
@@ -232,30 +230,8 @@
 	}
 } 
 
-@media (max-width: 1250px) and (max-height: 800px) {
+@media (max-width: 1250px) {
 	.cssAnimation .wrapper {
-		position: absolute;
-		top: 61vh;
-		left: 3vw;		
-		width: 5vw;
-		height: 30vh;
-		padding-top: 0.1vh;
-	}
-}
-
-@media (max-width: 450px) {
-	.cssAnimation .wrapper {
-		position: absolute;
-		width: 20vw;
-		height: 20vh;
-		padding-top: 0.1vh;
-	}
-
-	.cssAnimation {
-		position: absolute;
-		padding-top: 0.1vh;
-		top: 39%;
-		left: -45%;
-		overflow: hidden;
+		width: 300px;
 	}
 }

@@ -53,3 +53,57 @@ footer div {
     justify-content: center;
     margin: 0 50px 0 50px !important;
 }
+
+@media (max-width: 670px) {
+    .aboutPage {
+        margin: 0 2% 0 1%;
+        width: 98%;
+    }
+
+    .aboutPage div {
+        position: relative;
+        display: flex;
+        margin: 30px 50px 0 50px;
+    }
+
+    .aboutPage div:first-child {
+        margin-top: 100px;
+    }
+
+    .aboutPage .team div {
+        margin-top: 180px;
+    }
+
+    .aboutPage div img {
+        display: flex;
+        position: absolute;
+        top: 20%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
+
+    footer div {
+        justify-content: center;
+        margin: 30px 50px 0 50px !important;
+    }
+}
+
+@media (max-width: 370px) {
+    .aboutPage {
+        margin: 0 8% 0 9%;
+        width: 84%;
+    }
+
+    .aboutPage .team div {
+        width: 80%;
+    }
+
+    .aboutPage .team div li {
+        word-wrap: break-word;
+    }
+
+    .aboutPage div img {
+        top: 15%;
+    }
+}

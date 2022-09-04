@@ -1,0 +1,51 @@
+%absolute-center {
+	position: absolute;
+	top: 75%;
+	left: 38%;
+}
+
+.containerStyles {
+    @extend %absolute-center;
+    height: 15px;
+    width: 39vw;
+    background-color: #e0e0de;
+    border-radius: 50px;
+    margin-left: 100px;
+}
+
+.labelStyles {
+    position: absolute;
+    bottom: -11px;
+    margin: 0 0 10px 5px;
+    color: white;
+    font-weight: bold;
+    transform: rotate(0deg);
+}
+
+@media (max-width: 1250px) {
+    %absolute-center {
+		top: 60%;
+		left: 45%;
+	}
+
+    .containerStyles {
+        @extend %absolute-center;
+        height: 15px;
+        width: 30vw;
+    }
+}
+
+@media (max-width: 920px) {
+    .containerStyles {
+        top: 40%;
+		left: 18%;
+        width: 46vw;
+    }
+}
+
+@media (max-width: 380px) {
+    .containerStyles {
+		left: 15%;
+        width: 38vw;
+    }
+}

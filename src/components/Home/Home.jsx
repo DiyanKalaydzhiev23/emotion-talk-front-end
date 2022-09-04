@@ -25,8 +25,8 @@ export default function Home() {
                     <h2>Professional</h2>
                     <p>History on emotions, Add employees and receive information about how they feel.</p>
                     <span>
-                        <a className={HomeStyles.login} href="#">Login</a>
-                        <a className={HomeStyles.register} href="#">Register</a>
+                        <Link to="/login" className={HomeStyles.login}>Login</Link>
+                        <Link to="/register" className={HomeStyles.register}>Register</Link>
                     </span>
                 </div>
                 <div className={HomeStyles.tryFreeSection}>

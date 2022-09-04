@@ -150,9 +150,9 @@ export default function RecordSound() {
     }, []);
 
     useEffect(() => {
-        document.body.style.overflowY = "hidden";
+        document.body.style.overflow = "hidden";
 
-        return () => document.body.style.overflowY = "visible";
+        return () => document.body.style.overflow = "visible";
     });
 
     useInterval(() => {
@@ -203,12 +203,17 @@ export default function RecordSound() {
                 <AudioReactRecorder canvasWidth="0" canvasHeight="0" state={audioState.recordState} onStop={onStop} />
             </div>
             <ProgressBar completed={completed} audioLengthData={trackLength} displayLine={displayLineState} />
-            <MicWaves displayWaves={displayWavesState}/>
+            
+            <div className={RecordStyles.wavesHolder}>
+                <MicWaves displayWaves={displayWavesState}/>
+            </div>
+            
             <LoadingBrain rotation={loadingBrain}/>
 
             <div className={disableBtn}></div>
-            
-            <p id={RecordStyles.randomText}>{randomText}</p>
+            <div id={RecordStyles.randomText}>
+                <p>{randomText}</p>
+            </div>
 
             <div className={RecordStyles.frame} style={{display: displayMic}}>
                 <input onChange={func} type="checkbox" name="toggle" id={RecordStyles.recordToggle} />

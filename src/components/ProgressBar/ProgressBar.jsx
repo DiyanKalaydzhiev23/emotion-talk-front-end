@@ -1,4 +1,4 @@
-import ProgressBarStyles from './ProgressBarStyles.module.css';
+import ProgressBarStyles from './ProgressBarStyles.module.scss';
 
 
 export default function ProgressBar (props) {

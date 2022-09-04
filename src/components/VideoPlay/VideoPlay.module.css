@@ -5,10 +5,22 @@ video {
     width: 700px;
 }
 
-@media (max-width: 450px) {
+@media (max-width: 920px) {
     video {
         position: relative;
         width: 600px;
         margin-bottom: -4px;
+    }
+}
+
+@media (max-width: 360px) {
+    video {
+        width: 400px;
+    }
+}
+
+@media (max-width: 330px) {
+    video {
+        width: 320px;
     }
 }

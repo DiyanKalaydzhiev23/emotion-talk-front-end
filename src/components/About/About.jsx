@@ -16,13 +16,15 @@ export default function About() {
             <Navigation/>
 
             <div className={AboutStyles.aboutPage}>
-                <div className={AboutStyles.appInfo}>
+                <div className={`${AboutStyles.appInfo} ${AboutStyles.team}`}>
                     <img src="favicon.ico" alt="Logo image" />
-                    <p>
-                        <b>EmotionTalk</b> is an AI app that recognizes how you feel by your speech. 
-                        While it can be used for fun, it can also be used in a professional environment 
-                        from support centers, psychologists, and all institutions in which human feelings are a factor.
-                    </p>
+                    <div>
+                        <p>
+                            <b>EmotionTalk</b> is an AI app that recognizes how you feel by your speech. 
+                            While it can be used for fun, it can also be used in a professional environment 
+                            from support centers, psychologists, and all institutions in which human feelings are a factor.
+                        </p>
+                    </div>
                 </div>
                 <div className={AboutStyles.teamTypeHeader}>
                     <h3>Developers</h3>
@@ -63,7 +65,7 @@ export default function About() {
                         <ul>
                             <li>Contact: <a href="https://www.instagram.com/alexandra_dobreva/" target="_blank">@alexandra_dobreva</a></li>
                         </ul>
-                        </div>
+                    </div>
                 </div>
                 <div className={AboutStyles.team}>
                     <div>
@@ -78,14 +80,14 @@ export default function About() {
                         <ul>
                             <li>Contact: asya.borisova03@gmail.com</li>
                         </ul>
-                        </div>
+                    </div>
 
-                        <img src="asya_borisova.png" alt="Asya's image" />
+                    <img src="asya_borisova.png" alt="Asya's image" />
                 </div>
 
                 <footer>
                     <div>
-                        &copy;All rights reserved - EmotionTalk 2022
+                        &copy;All rights reserved
                     </div>
                 </footer>
             </div>

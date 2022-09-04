@@ -141,10 +141,13 @@ $mic-color: linear-gradient(45deg, #E0E0E0 50%, white 50%);
 	cursor: pointer;
 }
 
+.wavesHolder {
+	@extend %absolute-center;
+}
+
 .brain {
-	position: absolute;
-	top: 67%;
-	left: 34%;
+	@extend %absolute-center;
+	margin: -60px 0 0 -50px;
 	width: $circle-size;
 	height: $circle-size;
 }
@@ -173,9 +176,11 @@ $mic-color: linear-gradient(45deg, #E0E0E0 50%, white 50%);
 }
 
 #randomText {
-	position: absolute;
-	top: 550px;
-	left: 880px;
+	@extend %absolute-center;
+	display: flex;
+	margin: 35px 0 0 26vw;
+	transform: translate(-50% , -50%);
+	-webkit-transform: translate(-50%, -50%);
 }
 
 @keyframes spinning {
@@ -222,8 +227,8 @@ $mic-color: linear-gradient(45deg, #E0E0E0 50%, white 50%);
 
 @media (max-width: 1250px) and (min-width: 450px) {
 	%absolute-center {
-		top: 50%;
-		left: 10%;
+		top: 60%;
+		left: 45%;
 	}
 
 	.mic {
@@ -267,21 +272,19 @@ $mic-color: linear-gradient(45deg, #E0E0E0 50%, white 50%);
 		}
 	}
 
-	#randomText {
-		text-align: center;
-		top: 68vh;
-		left: 5vw;
+	.brain {
+		@extend %absolute-center;
 	}
 }
 
-@media (max-width: 449px) {
+@media (max-width: 920px) {
 	%pseudo1 {
 		content: '';
 		display: inline-block;
 	}
 
 	%absolute-left {
-		top: 45%;
+		top: 40%;
 		left: 18%;
 	}
 
@@ -377,8 +380,46 @@ $mic-color: linear-gradient(45deg, #E0E0E0 50%, white 50%);
 	}
 
 	#randomText {
-		text-align: center;
-		top: 45%;
-		left: 47%;
+		@extend %absolute-left;
+		margin: 35px 0 0 36vw;
+	}
+
+	.brain {
+		@extend %absolute-left;
+	}
+
+	.wavesHolder {
+		@extend %absolute-left;
+	}
+}
+
+@media (max-width: 360px) {
+	.videoFrame {
+		width: 70%;
+		overflow: hidden;
+	}
+}
+
+@media (max-width: 330px) {
+	.videoFrame {
+		width: 70%;
+		bottom: -15vw;
+		overflow: hidden;
+	}
+}
+
+@media (max-width: 510px) {
+	#randomText {
+		left: 25%;
+		margin: 35px 0 0 36vw;
+	}
+}
+
+@media (max-width: 360px) {
+	#randomText {
+		left: 52%;
+		width: 80%;
+		font-size: 10px;
+		margin: 35px 0 0 36vw;
 	}
 }

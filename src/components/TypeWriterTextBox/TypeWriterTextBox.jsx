@@ -3,7 +3,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 
 
 export default function TypeWriterTextBox(props) {
-    const matches = useMediaQuery('(max-width:600px)');
+    const matches = useMediaQuery('(max-width:750px)');
 
     let { text, animSec } = props;
 

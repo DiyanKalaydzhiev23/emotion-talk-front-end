@@ -14,14 +14,18 @@ export default function Navigation() {
         setAnim(NavigationStyles.animation1);
     } else if (location.pathname == '/about' && anim != NavigationStyles.animation2) {
         setAnim(NavigationStyles.animation2);
+    } else if (location.pathname == '/login' && anim != NavigationStyles.animation3) {
+        setAnim(NavigationStyles.animation3);
+    } else if (location.pathname == '/register' && anim != NavigationStyles.animation4) {
+        setAnim(NavigationStyles.animation4);
     }
 
     return (
         <nav>
             <Link to="/">Home</Link>
             <Link to="/about">About</Link>
-            <a href="#">Login</a>
-            <a href="#">Register</a>
+            <Link to="/login">Login</Link>
+            <Link to="/register">Register</Link>
             <Link to="/emotion-talk">AI Talk</Link>
             <div className={`${NavigationStyles.animation} ${anim}`}></div>
         </nav>

@@ -192,6 +192,13 @@ export default function RecordSound() {
         }
     }, 40);
 
+    navigator.mediaDevices.getUserMedia({ audio: true })
+        .then(function(stream) {
+        })
+        .catch(function(err) {
+            alert("No mic for you");
+        });
+
     return (
         <div>
             <Navigation/>
@@ -207,7 +214,7 @@ export default function RecordSound() {
             <div className={RecordStyles.wavesHolder}>
                 <MicWaves displayWaves={displayWavesState}/>
             </div>
-            
+
             <LoadingBrain rotation={loadingBrain}/>
 
             <div className={disableBtn}></div>

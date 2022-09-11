@@ -77,7 +77,7 @@ footer div {
     .aboutPage div img {
         display: flex;
         position: absolute;
-        top: 20%;
+        top: 17%;
         left: 50%;
         -webkit-transform: translate(-50%, -50%);
         transform: translate(-50%, -50%);
@@ -104,6 +104,6 @@ footer div {
     }
 
     .aboutPage div img {
-        top: 15%;
+        top: 14%;
     }
 }

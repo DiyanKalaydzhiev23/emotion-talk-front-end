@@ -196,7 +196,7 @@ export default function RecordSound() {
         .then(function(stream) {
         })
         .catch(function(err) {
-            alert("No mic for you");
+            alert("Enable mic");
         });
 
     return (

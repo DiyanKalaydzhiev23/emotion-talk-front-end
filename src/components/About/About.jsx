@@ -84,6 +84,24 @@ export default function About() {
 
                     <img src="asya_borisova.png" alt="Asya's image" />
                 </div>
+                <div className={AboutStyles.team}>
+                    <img src="alexandra_apostolova.png" alt="Alexandra's image" />
+
+                    <div>
+                        <p>
+                            <b>Aleksandra Apostolova - Graphic designer</b>
+                        </p>
+                        <p>
+                            Aleksandra is a graphic designer who is working on EmotionTalk. 
+                            She is a graphic design student at New Bulgarian University and has obtained a design diploma from SoftUni Creative. 
+                            Aleksandra currently works as a freelancer and runs an Instagram account where she posts some of her designs.
+                        </p>
+                        <ul>
+                            <li>Behance: <a href="https://www.behance.net/alexbeingcreative">Alexandra's behance</a></li>
+                            <li>Instagram: <a href="https://www.instagram.com/alexbeingcreative/?igshid=YmMyMTA2M2Y%3D">@alexbeingcreative</a></li>
+                        </ul>
+                    </div>
+                </div>
 
                 <footer>
                     <div>

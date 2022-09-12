@@ -169,7 +169,7 @@ export default function RecordSound() {
     }, timeout);
 
     useInterval(() => {
-        if (randomText != '') {
+        if (randomText) {
             let randomIndex = Math.floor(Math.random() * 6);
             let textOptions = [
                 'Analyzing',

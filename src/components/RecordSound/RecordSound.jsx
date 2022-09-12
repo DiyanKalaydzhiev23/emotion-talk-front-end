@@ -13,7 +13,7 @@ import { emotionsTextData } from '../../services/utills';
  
 
 export default function RecordSound() {  
-    const [video, setVideo] = useState("helloMaria.webm");
+    const [video, setVideo] = useState("helloMaria.mov");
     const [videoReady, setVideoReady] = useState("");
     const [textToDisplay, setTextToDisplay] = useState("Hello, I'm Maria. Let me guess what are you feeling.");
     const [textToDisplayReady, setTextToDisplayReady] = useState('');

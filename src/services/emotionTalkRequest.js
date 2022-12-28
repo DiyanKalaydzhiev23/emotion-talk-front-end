@@ -7,6 +7,8 @@ export const sendRecording = async (formData, audioLength) => {
         body: formData
     });
 
+    console.log(response);
+
     return await handleData(response);
 }
 

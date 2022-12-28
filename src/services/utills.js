@@ -11,7 +11,7 @@ export const handleData = async (response) => {
 
 const debug = false
 
-const baseURL = debug ? 'http://127.0.0.1:8000' : 'https://emotion-talk.herokuapp.com';
+const baseURL = debug ? 'http://127.0.0.1:8000' : 'https://emotion-talk.azurewebsites.net';
 
 const emotionsTextData = {
     'angry1': 'I hear that you are angry.',
